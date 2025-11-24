@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tienda E-commerce Isabel</title>
+  <link rel="stylesheet" href="estilos.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <!-- Menú Principal -->
+  <nav class="menu">
+    <div class="logo">🛍️ Tienda Isabel</div>
+    <ul class="navlinks">
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#carrito">Carrito (0)</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#sobre">Sobre Nosotros</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Banner de bienvenida -->
+  <header class="banner">
+    <h1>Bienvenido a Tienda Isabel</h1>
+    <p>Las mejores ofertas y productos exclusivos para ti</p>
+    <button class="btn-banner">Explorar Productos</button>
+  </header>
+
+  <!-- Productos en tarjetas -->
+  <section id="productos">
+    <h2>Nuestros Productos Destacados</h2>
+    <div class="productos-grid">
+      <div class="tarjeta">
+        <div class="badge">En Stock</div>
+        <img src="imagen.1.jpeg" alt="Producto 1" class="prod-img">
+        <h4 class="prod-titulo">Auriculares Premium</h4>
+        <p class="prod-desc">Sonido nítido y gran comodidad para tu día a día. Tecnología de cancelación de ruido.</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (127 reseñas)</div>
+        <div class="prod-precio">$29.990</div>
+        <button class="comprar-btn" onclick="agregarCarrito('Auriculares Premium', 29990)">Comprar</button>
+      </div>
+
+      <div class="tarjeta">
+        <div class="badge descuento">-20%</div>
+        <img src="imagen.2.jpeg" alt="Producto 2" class="prod-img">
+        <h4 class="prod-titulo">Smartwatch Deportivo</h4>
+        <p class="prod-desc">Mide tu actividad con estilo y tecnología avanzada. Resistente al agua.</p>
+        <div class="rating">⭐⭐⭐⭐ (89 reseñas)</div>
+        <div class="prod-precio">$48.500</div>
+        <button class="comprar-btn" onclick="agregarCarrito('Smartwatch Deportivo', 48500)">Comprar</button>
+      </div>
+
+      <div class="tarjeta">
+        <div class="badge">Nuevo</div>
+        <img src="imagen.3.jpeg" alt="Producto 3" class="prod-img">
+        <h4 class="prod-titulo">Cámara Instantánea</h4>
+        <p class="prod-desc">Captura tus momentos con calidad retro y moderna. Incluye film.</p>
+        <div class="rating">⭐⭐⭐⭐⭐ (156 reseñas)</div>
+        <div class="prod-precio">$35.900</div>
+        <button class="comprar-btn" onclick="agregarCarrito('Cámara Instantánea', 35900)">Comprar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección sobre nosotros -->
+  <section id="sobre" class="sobre">
+    <h2>Sobre Nuestra Tienda</h2>
+    <p>Somos una tienda dedicada a ofrecer los mejores productos tecnológicos y accesorios con la más alta calidad. 
+    Comprometidos con la satisfacción del cliente y entregas rápidas en San José de la Rinconada y alrededores.</p>
+    <div class="valores">
+      <div class="valor">
+        <h4>✓ Calidad Garantizada</h4>
+        <p>Productos originales 100%</p>
+      </div>
+      <div class="valor">
+        <h4>✓ Envío Rápido</h4>
+        <p>Entrega en 24-48 horas</p>
+      </div>
+      <div class="valor">
+        <h4>✓ Soporte 24/7</h4>
+        <p>Atención al cliente disponible</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carrito -->
+  <section id="carrito" class="carrito-seccion">
+    <h2>Tu Carrito de Compras</h2>
+    <div id="carrito-contenido" class="carrito-contenido">
+      <p>Tu carrito está vacío. ¡Agrega productos!</p>
+    </div>
+    <div class="carrito-total">
+      <h3>Total: $<span id="total">0</span></h3>
+      <button class="btn-comprar-final">Proceder al Pago</button>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="contacto">
+    <h2>Contacto</h2>
+    <form class="formulario-contacto">
+      <input type="text" placeholder="Tu nombre" required>
+      <input type="email" placeholder="Tu email" required>
+      <textarea placeholder="Tu mensaje" rows="4" required></textarea>
+      <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+    </form>
+  </section>
+
+  <!-- Footer con información -->
+  <footer>
+    <div class="footer-info">
+      <div>
+        <h4>Ubicación</h4>
+        <p>San José de la Rinconada, Antofagasta</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>📧 contacto@tiendaisabel.com</p>
+        <p>📱 +56 9 XXXX XXXX</p>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <a href="#">Facebook</a> | 
+        <a href="#">Instagram</a> | 
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+    <hr>
+    <p style="text-align:center; margin: 10px 0;">© 2025 Tienda Isabel | Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    let carrito = [];
+
+    function agregarCarrito(nombre, precio) {
+      carrito.push({nombre, precio});
+      actualizarCarrito();
+      alert(nombre + ' agregado al carrito');
+    }
+
+    function actualizarCarrito() {
+      let contenido = '<table class="tabla-carrito"><tr><th>Producto</th><th>Precio</th><th>Acción</th></tr>';
+      let total = 0;
+      
+      carrito.forEach((item, index) => {
+        contenido += `<tr>
+          <td>${item.nombre}</td>
+          <td>$${item.precio}</td>
+          <td><button onclick="eliminarCarrito(${index})" class="btn-eliminar">Eliminar</button></td>
+        </tr>`;
+        total += item.precio;
+      });
+      
+      contenido += '</table>';
+      document.getElementById('carrito-contenido').innerHTML = carrito.length > 0 ? contenido : '<p>Tu carrito está vacío.</p>';
+      document.getElementById('total').innerText = total;
+    }
+
+    function eliminarCarrito(index) {
+      carrito.splice(index, 1);
+      actualizarCarrito();
+    }
+  </script>
+</body>
+</html>
+
